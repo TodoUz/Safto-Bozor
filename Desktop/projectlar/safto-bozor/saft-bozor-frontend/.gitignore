@@ -1,24 +1,49 @@
-# Logs
-logs
+# Tizim fayllari
+desktop.ini
+*.lnk
+*.dat
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+*.regtrans-ms
+*.blf
+ntuser.*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Shaxsiy papkalar
+AppData/
+Documents/
+Downloads/
+Pictures/
+Videos/
+Music/
+OneDrive/
+Contacts/
+Favorites/
+Links/
+Saved Games/
+Searches/
+WPS Cloud Files/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Dasturiy fayllar
+node_modules/
+.vscode/
+.docker/
+.cristalix/
+.gologin/
+.pm2/
+.ssh/
+.swt/
+
+# Vaqtinchalik fayllar
+*.tmp
+*.bak
+*.zip
+*.mkv
+*.mp4
+*.jpg
+*.docx
+*.pdf
+
+# Boshqa loyihalar
+AnimalCrudPsql/
+MovieRentalPlatform/
+TourProject/
+cloneLinkedLn/
