@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  # =============================================================================
+  # PostgreSQL ma'lumotlar bazasi xizmati
+  # =============================================================================
+  db:
+    image: postgres:13-alpine
+    container_name: saftobozor_db
+    restart: always
+    environment:
+      POSTGRES_DB: saftobozor_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 0809iccs
+    ports:
+      - "5432:5433"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d saftobozor_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # =============================================================================
+  # NestJS Backend xizmati
+  # =============================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: saftobozor_backend
+    restart: always
+    ports:
+      - "6000:6000"
+    environment:
+      DATABASE_URL: postgres://postgres:0809iccs@db:5433/saftobozor_db
+      JWT_SECRET: meningotasecretlideploysecretim
+      APP_PORT: 6000
+      FRONTEND_URL: http://localhost:5173
+
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  # =============================================================================
+  # React Frontend xizmati
+  # =============================================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: saftobozor_frontend
+    restart: always
+    ports:
+      - "5173:80"
+    environment:
+      VITE_API_BASE_URL: http://backend:6000/api
+    depends_on:
+      - backend
+# =============================================================================
+# Ma'lumotlar bazasi uchun volume
+# =============================================================================
+volumes:
+  db_data:
