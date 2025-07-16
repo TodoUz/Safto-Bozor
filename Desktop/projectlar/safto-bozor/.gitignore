@@ -1,0 +1,36 @@
+# Tizim fayllari
+*.lnk
+desktop.ini
+*.mkv
+*.mp4
+*.jpg
+*.docx
+*.pdf
+*.dat
+*.log
+*.regtrans-ms
+*.blf
+ntuser.*
+
+# Tizim papkalari
+DArs/
+AppData/
+Documents/
+Downloads/
+Pictures/
+Videos/
+Music/
+OneDrive/
+.vscode/
+node_modules/
+.docker/
+.cristalix/
+.gologin/
+.pm2/
+.ssh/
+.swt/
+
+# Vaqtinchalik fayllar
+*.tmp
+*.bak
+*.zip
